@@ -7,23 +7,21 @@ using System.Windows.Data;
 
 namespace NetworkSniffer.Model
 {
-    /// <summary>
-    /// This class is used to split TCP packet to header and message
-    /// </summary>
+
     public class TCPPacket
     {
-        #region Fields
+        #region Campos
         private const uint TCPHeaderSize = 20;
         private byte[] byteTCPHeader = new byte[TCPHeaderSize];
         private byte[] byteTCPMessage;
         #endregion
 
-        #region Constructors
+        #region Constructor
         /// <summary>
-        /// Initializes new instance of TCPPacket class
+        /// Inicializa la  instancia de la clase TCPPacket 
         /// </summary>
-        /// <param name="byteBuffer">Byte array containing packet data</param>
-        /// <param name="length">Packet size in bytes</param>
+        /// <param name="byteBuffer">Byte array conteniendo la data del paquete</param>
+        /// <param name="length">Tamano de paquete en bytes</param>
         public TCPPacket(byte[] byteBuffer, int length)
         {
             try
@@ -49,24 +47,24 @@ namespace NetworkSniffer.Model
         }
         #endregion
 
-        #region Properties
+        #region Propiedades
         /// <summary>
-        /// Holds only one element - header part of the TCPPacket
+        /// Parte del header de TCPPacket
         /// </summary>
         public List<TCPHeader> TCPHeader { get; set; }
 
         /// <summary>
-        /// Holds TCP message if application protocol is DNS
+        /// Mantiene el mensaje TCP si el protocolo de la aplicacion es DNS
         /// </summary>
         public List<DNSPacket> DNSPacket { get; set; }
 
         /// <summary>
-        /// Holds info about application protocol
+        /// Informacion del protocolo
         /// </summary>
         public ApplicationProtocolType ApplicationProtocolType { get; private set; }
 
         /// <summary>
-        /// Composite collection that stores both header and message
+        /// Coleccion que almacena header y mensaje
         /// </summary>
         public IList PacketContent
         {
@@ -81,10 +79,10 @@ namespace NetworkSniffer.Model
         }
         #endregion
 
-        #region Methods
+        #region Metodos
         /// <summary>
-        /// Puts packet content in the PacketContent list
-        /// Adds header info to TCPHeader "list"
+        /// Pone el contenido de paquete en una lista de contenido de paquetes
+        /// Agregar la informacion del header en una lista de tipo TCPHeader
         /// </summary>
         private void PopulatePacketContents()
         {

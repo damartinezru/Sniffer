@@ -5,22 +5,20 @@ using System.Net.Sockets;
 namespace NetworkSniffer.Model
 {
     /// <summary>
-    /// This class contains methods used to start and stop receiving session and capture data
+    /// Esta clase contiene metodos para abrir o cerrar la sesion de captura de datos
     /// </summary>
     class InterfaceMonitor
     {
-        #region Fields
+        #region Campos
         private const uint MTU = 1024 * 64;
         private byte[] byteBufferData;
         private Socket socket;
         private IPAddress ipAddress;
         #endregion
 
-        #region Constructors
-        /// <summary>
-        /// Initializes new instance of the InterfaceMonitor class
-        /// </summary>
-        /// <param name="ip">IP address on which packets need to be captured</param>
+        #region Constructor
+
+        /// <param name="ip">Direccion IP en donde los paquetes necesitan ser capturados</param>
         public InterfaceMonitor(string ip)
         {
             byteBufferData = new byte[MTU];
@@ -29,22 +27,22 @@ namespace NetworkSniffer.Model
         }
         #endregion
 
-        #region Methods
+        #region Metodos
         /// <summary>
-        /// Opens new socket and starts receiving data
+        /// Abre un nuevo socket y empieza a recibir informacion
         /// </summary>
         public void StartCapture()
         {
-            /* Bind the socket to selected IP address */
+            /* Union del socket a la direccion ip seleccionada */
             socket.Bind(new IPEndPoint(ipAddress, 0));
 
-            /* Socket options apply only to IP packets */
+            /* Opciones de socket aplicadas solo a los paquetes ip */
             socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.HeaderIncluded, true);
 
             byte[] byteTrue = new byte[4] { 1, 0, 0, 0 };
             byte[] byteOut = new byte[4];
-            /* ReceiveAll implies that all incoming and outgoing packets on the interface are captured.
-             * Second option should be TRUE */
+            /* Recibe todo lo que implica paquetes entrantes y de salida en la interfaz que esta siendo capturada.
+            */
             socket.IOControl(IOControlCode.ReceiveAll, byteTrue, byteOut);
 
             byteBufferData = new byte[MTU];
@@ -53,7 +51,7 @@ namespace NetworkSniffer.Model
         }
 
         /// <summary>
-        /// Used to receive and process every new packet and receive the next one
+        /// Usada para recibir y procesar cada nuevo paquete y recibir el siguiente
         /// </summary>
         private void ReceiveData(IAsyncResult asyncResult)
         {
@@ -81,7 +79,7 @@ namespace NetworkSniffer.Model
         }
 
         /// <summary>
-        /// Used to stop current session by closing socket
+        /// Cierra la sesion actual por medio del cierre de socket
         /// </summary>
         public void StopCapture()
         {
@@ -94,7 +92,7 @@ namespace NetworkSniffer.Model
         }
         #endregion
 
-        #region Event handlers
+        #region handlers de eventos
         public event NewPacketEventHandler newPacketEventHandler;
 
         public delegate void NewPacketEventHandler(IPPacket newPacket);

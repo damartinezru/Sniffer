@@ -4,16 +4,16 @@ using System.Net;
 namespace NetworkSniffer.Model
 {
     /// <summary>
-    /// This class is used to parse and store UDP header fields
+    /// Esta clase es utilizada para parsear y asignar los campos de los headers UDP
     /// </summary>
     public class UDPHeader
     {
-        #region Contructors
+        #region Constructor
         /// <summary>
-        /// Initializes new instance of UDPHeader class
+        /// Inicializacion de instancia de la clase
         /// </summary>
-        /// <param name="byteBuffer">Byte array containing header data</param>
-        /// <param name="length">Size of header in bytes</param>
+        /// <param name="byteBuffer">Arreglo de bytes que contiene la data del header</param>
+        /// <param name="length">Tamano del header</param>
         public UDPHeader(byte[] byteBuffer, int length)
         {
             MemoryStream memoryStream = new MemoryStream(byteBuffer, 0, length);

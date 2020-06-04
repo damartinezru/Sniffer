@@ -3,19 +3,18 @@
 namespace NetworkSniffer.Model
 {
     /// <summary>
-    /// This class is used to define ApplicationProtocol type carried by TCP/UDP
+    /// Esta clase es usada para definir una aplicacion de tipo ApplicationProtocolType guiada por TCP/UDP
     /// </summary>
     public class ApplicationProtocolType
     {
-        #region Constructors
+        #region Constructores
         /// <summary>
-        /// Initializes new instance of ApplicationProtocolType class
         /// </summary>
-        /// <param name="SrcPort">Source port used to determine the protocol type</param>
-        /// <param name="DestPort">Destination port used to determine the protocol type</param>
+        /// <param name="SrcPort">Puerto origen usado para determinar el tipo de protocolo </param>
+        /// <param name="DestPort">Puerto destino es usado para determinar el tipo de protocolo</param>
         public ApplicationProtocolType(ushort SrcPort, ushort DestPort)
         {
-            // This solution is not optimal, but it works for the most cases
+            // Calculo del puerto
             PortNumber = Math.Min(SrcPort, DestPort);
 
             switch (PortNumber)
@@ -111,7 +110,7 @@ namespace NetworkSniffer.Model
         }
         #endregion
 
-        #region Properties
+        #region Propiedades
         public ushort PortNumber { get; private set; }
 
         public string PortName { get; private set; }

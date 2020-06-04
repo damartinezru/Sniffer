@@ -4,37 +4,28 @@ using System.ComponentModel;
 namespace NetworkSniffer
 {
     /// <summary>
-    /// This class is used to store a particular transport protocol statistics
+    /// Clase usada para almacenar estadisticas de un protocolo det trasnporte particular
     /// </summary>
     public class TransportProtocolCategory : INotifyPropertyChanged
     {
-        #region Constructors
-        /// <summary>
-        /// Initializes new instance of TransportProtocolCategory class
-        /// </summary>
-        /// <param name="protocolName">Name of protocol category</param>
+        #region Constructores
+
+        /// <param name="protocolName">Nombre de la categoria de protocolo</param>
         public TransportProtocolCategory(string protocolName)
         {
             ProtocolName = protocolName;
         }
 
-        /// <summary>
-        /// Initializes new instance of TransportProtocolCategory class
-        /// </summary>
-        /// <param name="count">Number of packets containing transport packets that use specified protocol</param>
-        /// <param name="percentage">Percentage of packets containing transport packets that use specified protocol</param>
+
+        /// <param name="count">Numero de paquetes que contienen paquetes de trasnporte que usan un protocolo especifico </param>
+        /// <param name="percentage">Porcentaje de paquetes que contienen paquetes de transporte que usan un protocolo especifico</param>
         public TransportProtocolCategory(int count, double percentage)
         {
             Count = count;
             Percentage = percentage;
         }
 
-        /// <summary>
-        /// Initializes new instance of TransportProtocolCategory class
-        /// </summary>
-        /// <param name="protocolName">Name of protocol category</param>
-        /// <param name="count">Number of packets containing transport packets that use specified protocol</param>
-        /// <param name="percentage">Percentage of packets containing transport packets that use specified protocol</param>
+
         public TransportProtocolCategory(string protocolName, int count, double percentage)
             : this(count, percentage)
         {
@@ -42,15 +33,13 @@ namespace NetworkSniffer
         }
         #endregion
 
-        #region Properties
-        /// <summary>
-        /// Name of protocol category
-        /// </summary>
+        #region Propiedades
+
         public string ProtocolName { get; set; }
 
         private int count;
         /// <summary>
-        /// Number of packets containing transport packets that use specified protocol
+        /// Numero de paquetes que contiene paquetes de transporte que usa un protocolo especifico
         /// </summary>
         public int Count
         {
@@ -67,7 +56,7 @@ namespace NetworkSniffer
 
         private double percentage;
         /// <summary>
-        /// Percentage of packets containing transport packets that use specified protocol
+        /// Porcentaje de paquetes que contienen paquetes de transporte que usan un protocolo especifico
         /// </summary>
         public double Percentage
         {
@@ -83,7 +72,7 @@ namespace NetworkSniffer
         }
         #endregion
 
-        #region Event handlers
+        #region handlers de evento
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged(string propertyName)

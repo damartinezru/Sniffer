@@ -4,16 +4,16 @@ using System.Net;
 namespace NetworkSniffer.Model
 {
     /// <summary>
-    /// This class is used to parse and store TCP header fields
+    /// Clase para parsear y asignar campos TCP del header
     /// </summary>
     public class TCPHeader
     {
-        #region Contructors
+        #region Constructores
         /// <summary>
         /// Initializes new instance of TCPHeader class
         /// </summary>
-        /// <param name="byteBuffer">Byte array containing header data</param>
-        /// <param name="length">Size of header in bytes</param>
+        /// <param name="byteBuffer">Byte array que contiene la data del header</param>
+        /// <param name="length">Tamano del header en bytes</param>
         public TCPHeader(byte[] byteBuffer, int length)
         {
             MemoryStream memoryStream = new MemoryStream(byteBuffer, 0, length);
